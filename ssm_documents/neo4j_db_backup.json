@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "2.2",
+  "description": "Document to take Neo4j DB backup",
+  "parameters": {
+    "backupDir": {
+      "type": "String",
+      "description": "Backup directory",
+      "default": "/home/ubuntu/neo4j_backups"
+    },
+    "backupName": {
+      "type": "String",
+      "description": "Backup name",
+      "default": "graph.db-backup"
+    }
+  },
+  "mainSteps": [
+    {
+      "action": "aws:runShellScript",
+      "name": "stopApacheService",
+      "inputs": {
+        "runCommand": [
+          "sudo service apache2 stop"
+        ]
+      }
+    },
+    {
+      "action": "aws:runShellScript",
+      "name": "startNEo4jDBBackup",
+      "inputs": {
+        "runCommand": [
+          "sudo neo4j-admin backup --backup-dir={{ backupDir }} --name={{ backupName }}"
+        ]
+      }
+    },
+    {
+      "action": "aws:runShellScript",
+      "name": "startApacheService",
+      "inputs": {
+        "runCommand": [
+          "sudo service apache2 start"
+        ]
+      }
+    },
+    {
+      "action": "aws:runShellScript",
+      "name": "checkApacheServiceStatus",
+      "inputs": {
+        "runCommand": [
+          "sudo service apache2 status"
+        ]
+      }
+    }
+  ]
+}
