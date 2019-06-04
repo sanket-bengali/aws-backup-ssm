@@ -35,21 +35,23 @@ Note here the input params "badkupDir" (default : "/home/ubuntu/neo4j_backups") 
 
 ### Note
 
-1. AWS operations are done using SDK : [boto3 client for Python](https://aws.amazon.com/sdk-for-python/)
+1. These scripts can be stored in S3 or Github, and called from Systems Manager's State Manager Associations. Details [here](https://medium.com/@sanketbengali.23/aws-systems-manager-service-b023e95810d9). 
 
-2. Input parameters :
+2. AWS operations are done using SDK : [boto3 client for Python](https://aws.amazon.com/sdk-for-python/)
+
+3. Input parameters :
 
    In the sample scripts, several input params are provided as static values or hard-coded in the scripts.
 
    As an improvement, these values can be retrieved from different AWS resources using SDK/CLI or passed as inputs.
 
-3. Python library :
+4. Python library :
 
    To execute Linux CLI on local or remote machines, Python's in-built library [subprocess](https://docs.python.org/2/library/subprocess.html) is used.
 
    Additionally, each Python script is individial, hence each has its own "execute_shell_commands" to execute SSH command locally or remotely.
  
-4. Waiting for backup/restore operation completion :
+5. Waiting for backup/restore operation completion :
     
    AWS SDK has in-built "wait" functions for many services (for ex. EC2 snapshot, DB snapshot etc.).
 
