@@ -8,11 +8,11 @@ More information on [AWS Systems Manager service](https://medium.com/@sanketbeng
 
 In the sample scripts, below simple flow is executed :
 
-1. Run pre-script (ex. "sudo service apache2 stop")
+1. Run pre-script (ex. ```sudo service apache2 stop```)
 
 2. Take backup or restore
 
-3. Run post-script (ex. "sudo service apache2 start", "sudo service apache2 status")
+3. Run post-script (ex. ```sudo service apache2 start```, ```sudo service apache2 status```)
 
 Pre and post scripts execution is done in 2 scenarios :
 
@@ -27,7 +27,7 @@ Pre and post scripts execution is done in 2 scenarios :
 ## SSM document
 
 The neo4j_db_backup.json SSM document executes the backup flow, where it takes Neo4j DB backup using [Neo4j's CLI](https://neo4j.com/docs/operations-manual/current/backup/performing/)
-(ex. "sudo neo4j-admin backup --backup-dir={{ backupDir }} --name={{ backupName }}")
+(ex. ```sudo neo4j-admin backup --backup-dir={{ backupDir }} --name={{ backupName }}```)
    
 Note here the input params "badkupDir" (default : "/home/ubuntu/neo4j_backups") and "backupName" (default : "graph.db-backup")
 
@@ -63,31 +63,31 @@ Note here the input params "badkupDir" (default : "/home/ubuntu/neo4j_backups") 
 
    Takes EC2 snapshot, and waits for completion.
    
-   Execution : python ec2_volume_snapshot.py <volume_id> <region_name>
+   Execution : ```python ec2_volume_snapshot.py <volume_id> <region_name>```
 
 2. pgsql_db_snapshot.py
 
    Takes RDS snapshot, and waits for completion.
    
-   Execution : python pgsql_db_snapshot.py <ssh_key> <user_name> <host_ip> <db_instance_id>
+   Execution : ```python pgsql_db_snapshot.py <ssh_key> <user_name> <host_ip> <db_instance_id>```
   
 3. pgsql_db_snapshot_aws_backup.py
 
    Starts a backup job, and waits for completion.
    
-   Execution : python pgsql_db_snapshot_aws_backup.py <backup_vault_name> <resource_arn> <iam_role_arn> <region_name>
+   Execution : ```python pgsql_db_snapshot_aws_backup.py <backup_vault_name> <resource_arn> <iam_role_arn> <region_name>```
 
 4. aurora_pgsql_cluster_snapshot.py
 
    Takes Aurora DB Cluster snapshot, and waits for completion.
    
-   Execution : python aurora_pgsql_cluster_snapshot.py <ssh_key> <user_name> <host_ip> <db_cluster_id>
+   Execution : ```python aurora_pgsql_cluster_snapshot.py <ssh_key> <user_name> <host_ip> <db_cluster_id>```
   
 5. aurora_pgsql_cluster_snapshot_restore.py
 
    Restores Aurora DB Cluster snapshot, and waits for completion.
    
-   Execution : python aurora_pgsql_cluster_snapshot_restore.py <ssh_key> <user_name> <host_ip> <db_cluster_snapshot_id> <db_subnet_group_name>
+   Execution : ```python aurora_pgsql_cluster_snapshot_restore.py <ssh_key> <user_name> <host_ip> <db_cluster_snapshot_id> <db_subnet_group_name>```
 
 ## License
 
